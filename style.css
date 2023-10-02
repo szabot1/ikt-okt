@@ -1,12 +1,20 @@
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400 700;
+    src: url(https://rsms.me/inter/font-files/Inter-Regular.woff2?v=3.12) format('woff2'), url(https://rsms.me/inter/font-files/Inter-Regular.woff?v=3.12) format('woff');
+}
+
 * {
     box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
 }
 
 .bg-black {
     background-color: #222222;
 }
 
-.border {
-    border-color: #d9d9d9;
-    border-radius: 1px;
+.text-white {
+    color: #ffffff;
 }
