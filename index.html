@@ -16,32 +16,84 @@
   <body>
     <div class="container mt-5">
       <div class="row justify-content-center">
-        <div class="col-md-4">
-          <div class="card border-0">
-            <div class="card-header text-center border-0 bg-transparent">
-              Regisztráció
+        <div class="col-md-12 col-lg-8">
+          <div class="card border-0 bg-transparent">
+            <div class="card-header text-center border-0 bg-transparent pb-0">
+              <h3>Regisztráció</h3>
             </div>
             <div class="card-body">
               <form>
-                <div class="form-group">
-                  <label for="username">Felhasználónév:</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="username"
-                    name="username"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="password">Jelszó:</label>
-                  <input
-                    type="password"
-                    class="form-control"
-                    id="password"
-                    name="password"
-                    required
-                  />
+                <div id="container">
+                  <div>
+                    <div class="form-group">
+                      <label for="username">Név:</label>
+                      <input
+                        type="text"
+                        class="form-control bg-transparent text-white"
+                        id="username"
+                        name="username"
+                        required
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="gender">Nem:</label>
+                      <div id="gender-chooser">
+                        <input
+                          type="radio"
+                          id="male"
+                          name="gender"
+                          value="Férfi"
+                        />
+                        <label for="male">Férfi</label>
+                        <input
+                          type="radio"
+                          id="female"
+                          name="gender"
+                          value="Nő"
+                        />
+                        <label for="female">Nő</label>
+                        <input
+                          type="radio"
+                          id="other"
+                          name="gender"
+                          value="Egyéb"
+                        />
+                        <label for="other">Egyéb</label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="profession">Foglalkozás:</label>
+                      <input
+                        type="text"
+                        class="form-control bg-transparent text-white"
+                        id="profession"
+                        name="profession"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <div class="form-group">
+                      <label for="email">Email:</label>
+                      <input
+                        type="email"
+                        class="form-control bg-transparent text-white"
+                        id="email"
+                        name="email"
+                        required
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="password">Jelszó:</label>
+                      <input
+                        type="password"
+                        class="form-control bg-transparent text-white"
+                        id="password"
+                        name="password"
+                        required
+                      />
+                    </div>
+                  </div>
                 </div>
                 <button type="submit" class="btn btn-block bg-black text-white">
                   Regisztráció
