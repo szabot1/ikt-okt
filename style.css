@@ -115,3 +115,42 @@ h6 {
     align-items: center;
   }
 }
+
+.gender-icon {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+#age-chooser {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+input:disabled,
+input:read-only,
+input:disabled:focus,
+input:read-only:focus {
+  border-color: #bbbbbb !important;
+  color: #bbbbbb !important;
+}
+
+#enter-password {
+  text-decoration: underline;
+  color: #bbbbbb;
+}
+
+#sector option {
+  color: black;
+}
+
+#sector option:disabled {
+  color: gray;
+}
