@@ -1,55 +1,112 @@
-//Random Password átadás.
-let randomkeys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$';
-let randompass = "";
-for(let i = 0;i<16;i++)
-{
-  let upperorlower = Math.floor(Math.random());
-  let current = Math.floor(Math.random()* randomkeys.length + 1);
-  randompass += randomkeys.charAt(current);
-}
-/*Test
-console.log(randompass);
-*/
-document.getElementById("password").value = randompass;
+// Jelszó generálás
+const generatePassword = () => {
+  let random = [
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    "abcdefghijklmnopqrstuvwxyz",
+    "0123456789",
+    "!@#$%^&*",
+  ];
+
+  let randompass = "";
+
+  for (let i = 0; i < 16; i++) {
+    let randomkeys = random[Math.floor(Math.random() * random.length)];
+    let current = Math.floor(Math.random() * randomkeys.length + 1);
+    randompass += randomkeys.charAt(current);
+  }
+
+  document.getElementById("password").value = randompass;
+};
+
+generatePassword();
 
 //Név validálás
 const isValidName = (name) => {
   if (name.length === 0) {
-    return false;
+    return [false, "A név megadása kötelező."];
   }
 
   if (!name[0].match(/[A-Z]/)) {
-    return false;
+    return [false, "A név nagybetűvel kell kezdődjön."];
   }
 
   if (name.match(/\d/)) {
-    return false;
+    return [false, "A név nem tartalmazhat számot."];
   }
 
-  return true;
+  return [true, ""];
 };
 
 //Email validálás
 const isValidEmail = (email) => {
   if (!email.includes("@")) {
-    return false;
+    return [false, "Az email címnek tartalmaznia kell a @ jelet."];
   }
 
   const [local, domain] = email.split("@");
 
   if (local.length === 0 || domain.length === 0) {
-    return false;
+    return [false, "Az email címnek tartalmaznia kell a @ jelet."];
   }
 
   if (!domain.includes(".")) {
-    return false;
+    return [false, "Az email címnek tartalmaznia kell a . jelet."];
   }
 
   const [_, domainExtension] = domain.split(".");
 
   if (!["com", "hu", "net", "edu"].includes(domainExtension)) {
-    return false;
+    return [false, "Az email címnek csak com, hu, net, edu lehet a vége."];
   }
 
-  return true;
+  return [true, ""];
 };
+
+// Jelszó validálás
+const isValidPassword = (password) => {
+  if (password.length < 8) {
+    return [false, "A jelszónak legalább 8 karakter hosszúnak kell lennie."];
+  }
+
+  if (!password.match(/[A-Z]/)) {
+    return [false, "A jelszónak tartalmaznia kell legalább egy nagybetűt."];
+  }
+
+  if (!password.match(/[a-z]/)) {
+    return [false, "A jelszónak tartalmaznia kell legalább egy kisbetűt."];
+  }
+
+  if (!password.match(/\d/)) {
+    return [false, "A jelszónak tartalmaznia kell legalább egy számot."];
+  }
+
+  if (!password.match(/[!@#$%^&*]/)) {
+    return [
+      false,
+      "A jelszónak tartalmaznia kell legalább egy speciális karaktert.",
+    ];
+  }
+
+  return [true, ""];
+};
+
+var isRandomlyGenerated = true;
+
+// Jelszó bevitel / generálás
+document
+  .getElementById("switch-password-mode")
+  .addEventListener("click", function () {
+    if (isRandomlyGenerated) {
+      document.getElementById("password").value = "";
+      document
+        .getElementById("password")
+        .attributes.removeNamedItem("readonly");
+      this.innerHTML = "inkább automatikusan generálok egyet...";
+    } else {
+      generatePassword();
+      document.getElementById("password").setAttribute("readonly", true);
+      this.innerHTML = "inkább megadok egyet...";
+    }
+
+    isRandomlyGenerated = !isRandomlyGenerated;
+  });

@@ -138,8 +138,8 @@ input:disabled,
 input:read-only,
 input:disabled:focus,
 input:read-only:focus {
-  border-color: #bbbbbb !important;
-  color: #bbbbbb !important;
+  border-color: #a5a5a5 !important;
+  color: #a5a5a5 !important;
 }
 
 #enter-password {
@@ -153,4 +153,14 @@ input:read-only:focus {
 
 #sector option:disabled {
   color: gray;
+}
+
+#switch-password-mode,
+#switch-password-mode:hover {
+  color: rgb(124, 182, 241);
+  text-decoration: none;
+}
+
+input .invalid {
+  border-color: red !important;
 }
