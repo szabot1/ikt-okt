@@ -144,3 +144,17 @@ const toggleError = (id, message) => {
     }
   }
 };
+//Validáció lefuttatása.
+document
+  .getElementById("register-form")
+  .addEventListener("submit", function (e) {
+    e.preventDefault();
+    let data = new FormData(e.target);
+
+    let [success, message] = isValidName(data.get("username"));
+    if (!success) toggleError("username", message);
+    else toggleError("username", undefined);
+    [success, message] = isValidEmail(data.get("email"));
+    if (!success) toggleError("email", message);
+    else toggleError("email", undefined);
+  });
