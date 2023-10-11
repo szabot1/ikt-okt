@@ -110,3 +110,37 @@ document
 
     isRandomlyGenerated = !isRandomlyGenerated;
   });
+
+// Error üzenetek
+const toggleError = (id, message) => {
+  const label = document.querySelector(`label[for="${id}"]`);
+  const input = document.getElementById(id);
+  const error = document.getElementById(`${id}-error`);
+
+  const shouldHide = message === undefined;
+
+  if (label) {
+    if (shouldHide) {
+      label.classList.remove("error-msg");
+    } else {
+      label.classList.add("error-msg");
+    }
+  }
+
+  if (input) {
+    if (shouldHide) {
+      input.classList.remove("invalid");
+    } else {
+      input.classList.add("invalid");
+    }
+  }
+
+  if (error) {
+    error.innerHTML = message || "";
+    if (shouldHide) {
+      error.classList.add("hide");
+    } else {
+      error.classList.remove("hide");
+    }
+  }
+};

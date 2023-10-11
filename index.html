@@ -34,6 +34,7 @@
                         name="username"
                         required
                       />
+                      <span id="username-error" class="error-msg hide"></span>
                     </div>
                     <div class="form-group">
                       <label for="gender">Nem:</label>
@@ -136,9 +137,10 @@
                           </div>
                         </label>
                       </div>
+                      <span id="gender-error" class="error-msg hide"></span>
                     </div>
                     <div class="form-group">
-                      <label for="profession">Életkor:</label>
+                      <label for="age-chooser">Életkor:</label>
                       <div id="age-chooser">
                         <div>
                           <input
@@ -181,6 +183,10 @@
                           </label>
                         </div>
                       </div>
+                      <span
+                        id="age-chooser-error"
+                        class="error-msg hide"
+                      ></span>
                     </div>
                     <div class="form-group">
                       <label for="profession">Foglalkozás:</label>
@@ -191,11 +197,12 @@
                         name="profession"
                         required
                       />
+                      <span id="profession-error" class="error-msg hide"></span>
                     </div>
                   </div>
                   <div>
                     <div class="form-group">
-                      <label for="email">Ágazat:</label>
+                      <label for="sector">Ágazat:</label>
                       <select
                         class="form-control bg-transparent text-white"
                         id="sector"
@@ -215,6 +222,7 @@
                         <option value="szocialis">Szociális</option>
                         <option value="sport">Sport</option>
                       </select>
+                      <span id="sector-error" class="error-msg hide"></span>
                     </div>
                     <div class="form-group">
                       <label for="email">Email:</label>
@@ -225,6 +233,7 @@
                         name="email"
                         required
                       />
+                      <span id="email-error" class="error-msg hide"></span>
                     </div>
                     <div class="form-group">
                       <label for="password">Jelszó:</label>
@@ -240,6 +249,7 @@
                       <a href="#" id="switch-password-mode"
                         >inkább megadok egyet...</a
                       >
+                      <span id="password-error" class="error-msg hide"></span>
                     </div>
                   </div>
                 </div>

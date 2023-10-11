@@ -161,6 +161,10 @@ input:read-only:focus {
   text-decoration: none;
 }
 
-input .invalid {
-  border-color: red !important;
+input.invalid {
+  border-color: #fb3c3c !important;
+}
+
+.error-msg {
+  color: #fb3c3c;
 }
