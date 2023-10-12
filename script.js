@@ -154,6 +154,7 @@ document
     let [success, message] = isValidName(data.get("username"));
     if (!success) toggleError("username", message);
     else toggleError("username", undefined);
+
     [success, message] = isValidEmail(data.get("email"));
     if (!success) toggleError("email", message);
     else toggleError("email", undefined);
