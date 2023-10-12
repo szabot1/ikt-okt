@@ -166,7 +166,7 @@ input.invalid {
 }
 
 .error-msg {
-  color: #fb3c3c;
+  color: #fb3c3c !important;
 }
 
 .icon {

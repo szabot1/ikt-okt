@@ -9,18 +9,19 @@ const generatePassword = () => {
 
   let randompass = "";
 
-  for (let i = 0; i < 16; i++) {
-    let randomkeys = random[Math.floor(Math.random() * random.length)];
-    let current = Math.floor(Math.random() * randomkeys.length + 1);
-    randompass += randomkeys.charAt(current);
+  while (!isValidPassword(randompass)[0]) {
+    randompass = "";
+    for (let i = 0; i < 16; i++) {
+      let randomkeys = random[Math.floor(Math.random() * random.length)];
+      let current = Math.floor(Math.random() * randomkeys.length + 1);
+      randompass += randomkeys.charAt(current);
+    }
   }
 
   document.getElementById("password").value = randompass;
 };
 
-generatePassword();
-
-//Név validálás
+// Név validálás
 const isValidName = (name) => {
   if (name.length === 0) {
     return [false, "A név megadása kötelező."];
@@ -37,7 +38,7 @@ const isValidName = (name) => {
   return [true, ""];
 };
 
-//Email validálás
+// Email validálás
 const isValidEmail = (email) => {
   if (!email.includes("@")) {
     return [false, "Az email címnek tartalmaznia kell a @ jelet."];
@@ -90,9 +91,31 @@ const isValidPassword = (password) => {
   return [true, ""];
 };
 
+// Foglalkozás validálás
+const isValidProfession = (profession) => {
+  if (profession.length < 3) {
+    return [
+      false,
+      "A foglalkozásnak legalább 3 karakter hosszúnak kell lennie.",
+    ];
+  }
+
+  return [true, ""];
+};
+
+// Ágazat validálás
+const isValidSector = (sector) => {
+  if (sector.length === 0) {
+    return [false, "Az ágazat megadása kötelező."];
+  }
+
+  return [true, ""];
+};
+// Jelszó bevitel / generálás
 var isRandomlyGenerated = true;
 
-// Jelszó bevitel / generálás
+generatePassword();
+
 document
   .getElementById("switch-password-mode")
   .addEventListener("click", function () {
@@ -114,6 +137,7 @@ document
 // Error üzenetek
 const toggleError = (id, message) => {
   const label = document.querySelector(`label[for="${id}"]`);
+  const labelIcon = document.querySelector(`label[for="${id}"] svg`);
   const input = document.getElementById(id);
   const error = document.getElementById(`${id}-error`);
 
@@ -124,6 +148,14 @@ const toggleError = (id, message) => {
       label.classList.remove("error-msg");
     } else {
       label.classList.add("error-msg");
+    }
+  }
+
+  if (labelIcon) {
+    if (shouldHide) {
+      labelIcon.classList.remove("error-msg");
+    } else {
+      labelIcon.classList.add("error-msg");
     }
   }
 
@@ -158,4 +190,16 @@ document
     [success, message] = isValidEmail(data.get("email"));
     if (!success) toggleError("email", message);
     else toggleError("email", undefined);
+
+    [success, message] = isValidProfession(data.get("profession"));
+    if (!success) toggleError("profession", message);
+    else toggleError("profession", undefined);
+
+    [success, message] = isValidSector(data.get("sector"));
+    if (!success) toggleError("sector", message);
+    else toggleError("sector", undefined);
+
+    [success, message] = isValidPassword(data.get("password"));
+    if (!success) toggleError("password", message);
+    else toggleError("password", undefined);
   });
