@@ -176,30 +176,27 @@ const toggleError = (id, message) => {
     }
   }
 };
+
+const runValidation = (id, value, validator, event) => {
+  let [success, message] = validator(value);
+
+  if (!success) {
+    toggleError(id, message);
+    event.preventDefault();
+  } else {
+    toggleError(id, undefined);
+  }
+};
+
 //Validáció lefuttatása.
 document
   .getElementById("register-form")
   .addEventListener("submit", function (e) {
-    e.preventDefault();
     let data = new FormData(e.target);
 
-    let [success, message] = isValidName(data.get("username"));
-    if (!success) toggleError("username", message);
-    else toggleError("username", undefined);
-
-    [success, message] = isValidEmail(data.get("email"));
-    if (!success) toggleError("email", message);
-    else toggleError("email", undefined);
-
-    [success, message] = isValidProfession(data.get("profession"));
-    if (!success) toggleError("profession", message);
-    else toggleError("profession", undefined);
-
-    [success, message] = isValidSector(data.get("sector"));
-    if (!success) toggleError("sector", message);
-    else toggleError("sector", undefined);
-
-    [success, message] = isValidPassword(data.get("password"));
-    if (!success) toggleError("password", message);
-    else toggleError("password", undefined);
+    runValidation("username", data.get("username"), isValidName, e);
+    runValidation("email", data.get("email"), isValidEmail, e);
+    runValidation("profession", data.get("profession"), isValidProfession, e);
+    runValidation("sector", data.get("sector"), isValidSector, e);
+    runValidation("password", data.get("password"), isValidPassword, e);
   });
